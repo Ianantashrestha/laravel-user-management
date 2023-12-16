@@ -1,0 +1,19 @@
+{
+    "name": "ananta/user-management",
+    "description": "User Management with role and permission",
+    "type": "library",
+    "license": "MIT",
+    "author":[
+        {
+            "name": "Ananta Shrestha",
+            "email": "ianantashrestha@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload" :{
+        "psr-4":{
+            "Ananta\\UserManagement\\":"src/"
+        }
+    }
+}

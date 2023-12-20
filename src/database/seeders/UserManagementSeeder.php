@@ -5,7 +5,7 @@ namespace IAnanta\UserManagement\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class UserManagementDatabaseSeeder extends Seeder
+class UserManagementSeeder extends Seeder
 {
      public $adminPassword = '$2y$10$JcmAHe5eUZ2rS0jU1GWr/.xhwCnh2RU13qwjTPcqfmtZXjZxcryPO';
     /**

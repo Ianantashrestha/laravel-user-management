@@ -1,5 +1,5 @@
 <?php
-namespace Ananta\UserManagement\Models;
+namespace IAnanta\UserManagement\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -1,6 +1,6 @@
 <?php 
 
-namespace Ananta\UserManagement\Repository;
+namespace IAnanta\UserManagement\Repository;
 use Ananta\UserManagement\Models\Role;
 
 class RoleRepository{

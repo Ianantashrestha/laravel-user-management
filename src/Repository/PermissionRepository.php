@@ -1,5 +1,5 @@
 <?php 
-namespace Ananta\UserManagement\Repository;
+namespace IAnanta\UserManagement\Repository;
 use Ananta\UserManagement\Models\Permission;
 class PermissionRepository{
 	private $query;

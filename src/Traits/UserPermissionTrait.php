@@ -1,5 +1,5 @@
 <?php 
-namespace Ananta\UserManagement\Traits;
+namespace IAnanta\UserManagement\Traits;
 trait UserPermissionTrait{
 	protected static $allPermissions = null;
     protected static $allViewPermissions = null;

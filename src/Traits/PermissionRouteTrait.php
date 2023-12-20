@@ -1,5 +1,5 @@
 <?php 
-namespace Ananta\UserManagement\Traits;
+namespace IAnanta\UserManagement\Traits;
 
 trait PermissionRouteTrait{
 	/**

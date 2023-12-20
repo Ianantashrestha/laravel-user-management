@@ -1,6 +1,6 @@
 <?php
 
-namespace Ananta\UserManagement\Middleware;
+namespace IAnanta\UserManagement\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

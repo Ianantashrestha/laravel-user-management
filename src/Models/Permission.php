@@ -1,5 +1,5 @@
 <?php
-namespace Ananta\UserManagement\Models;
+namespace IAnanta\UserManagement\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model

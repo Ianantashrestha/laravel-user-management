@@ -1,5 +1,5 @@
 <?php 
-namespace Ananta\UserManagement;
+namespace IAnanta\UserManagement;
 use Illuminate\Support\ServiceProvider;
 class UserManagementServiceProvider extends ServiceProvider{
 	public function boot(){

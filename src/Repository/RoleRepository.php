@@ -1,7 +1,7 @@
 <?php 
 
 namespace IAnanta\UserManagement\Repository;
-use Ananta\UserManagement\Models\Role;
+use IAnanta\UserManagement\Models\Role;
 
 class RoleRepository{
 	private $query;

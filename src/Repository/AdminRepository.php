@@ -1,6 +1,6 @@
 <?php 
 namespace IAnanta\UserManagement\Repository;
-use Ananta\UserManagement\Models\Admin;
+use IAnanta\UserManagement\Models\Admin;
 class AdminRepository{
 	private $query;
 

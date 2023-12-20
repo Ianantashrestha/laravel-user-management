@@ -4,7 +4,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Ananta\UserManagement\Traits\UserPermissionTrait;
+use IAnanta\UserManagement\Traits\UserPermissionTrait;
 class Admin extends Model implements AuthenticatableContract
 {
 	use Authenticatable,UserPermissionTrait;

@@ -30,8 +30,8 @@ class PermissionRepository{
 		return $this
 				->query
 				->create([
-					"name" => $data->name,
-					'access_uri' => $data->access_uri,
+					'name' => $data['name'],
+					'access_uri' => $data['access_uri'],
 					'created_by' =>  \Auth::guard('admin')->user()->id
 				]);
 	}
@@ -52,8 +52,8 @@ class PermissionRepository{
 				->where('id',$id)
 				->update(
 					[
-						"name" => $data->name,
-						'access_uri' => $data->access_uri,
+						'name' => $data['name'],
+					    'access_uri' => $data['access_uri'],
 						'updated_by' =>  \Auth::guard('admin')->user()->id
 					]
 				);
@@ -61,7 +61,7 @@ class PermissionRepository{
 
 
 	public function deletePermission(int $id){
-		return $this->
+		return $this
 				->query
 				->where('id',$id)
 				->delete();

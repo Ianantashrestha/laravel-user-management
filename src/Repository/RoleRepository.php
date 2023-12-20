@@ -30,7 +30,7 @@ class RoleRepository{
 		$role = $this
 					->query
 					->create([
-						'name' => $data->name,
+						'name' => $data['name'],
 						'created_by' => \Auth::guard('admin')->user()->id
 					]);
 	}
@@ -45,7 +45,7 @@ class RoleRepository{
 	public function updateRole(array $data,int $id){
 		$user =  \Auth::guard('admin')->user();
 		$roleData = [
-			'name' => $data->name,
+			'name' => $data['name'],
 			'updated_by' =>$user->id
 		];
 		$role = $this->findRole($id);

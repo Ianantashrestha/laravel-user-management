@@ -18,7 +18,6 @@ class AdminRepository{
 		}
 
 		$query = $query->orderBy('id','desc')
-
 		if($params['paginate'] === true){
 			return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1)
 		}else{
@@ -44,10 +43,10 @@ class AdminRepository{
 
 	public function storeAdmin(array $data){
 		$userData=[
-			'name'=>$data->name,
-			'username'=>$data->username,
-			'email'=>$data->email,
-			'password'=>$data->password,
+			'name'=>$data['name'],
+			'username'=>$data['username'],
+			'email'=>$data['email'],
+			'password'=>$data['password'],
 			'created_by' => \Auth::guard('admin')->user()->id
 		];
 		$admin = $this
@@ -69,9 +68,9 @@ class AdminRepository{
 
 	public function updateAdmin(array $data,int $id){
 		$userData=[
-			'name'=>$data->name,
-			'username'=>$data->username,
-			'email'=>$data->email,
+			'name'=>$data['name'],
+			'username'=>$data['username'],
+			'email'=>$data['email'],
 			'updated_by' => \Auth::guard('admin')->user()->id,
 		];
 		if($data->password){

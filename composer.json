@@ -10,7 +10,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "iananta/user-management": "1.0.0"
+    },
     "autoload" :{
         "psr-4":{
             "IAnanta\\UserManagement\\":"src/"

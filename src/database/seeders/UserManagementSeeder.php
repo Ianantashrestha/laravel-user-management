@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Usermanagement\Database\Seeders;
+namespace Ananta\UserManagement\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;

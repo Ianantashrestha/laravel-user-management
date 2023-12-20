@@ -23,5 +23,12 @@
         "psr-4":{
             "IAnanta\\UserManagement\\":"src/"
         }
+    },
+    "extra" : {
+        "laravel":{
+            "providers":[
+                "IAnanta\\UserManagement\\UserManagementServiceProvider"
+            ]
+        }
     }
 }

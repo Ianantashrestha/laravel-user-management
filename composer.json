@@ -9,7 +9,7 @@
             "email": "ianantashrestha@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "main",
     "require": {
         "iananta/user-management": "1.0.0"
     },

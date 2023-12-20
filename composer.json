@@ -9,7 +9,13 @@
             "email": "ianantashrestha@gmail.com"
         }
     ],
-    "minimum-stability": "main",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Ianantashrestha/laravel-user-management"
+        }
+    ],
+    "minimum-stability": "dev-main",
     "require": {
         "iananta/user-management": "1.0.0"
     },

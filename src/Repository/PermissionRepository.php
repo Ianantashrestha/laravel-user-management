@@ -32,7 +32,7 @@ class PermissionRepository{
 				->create([
 					'name' => $data['name'],
 					'access_uri' => $data['access_uri'],
-					'created_by' =>  \Auth::guard('admin')->user()->id
+					'created_by' =>  \Auth::guard(config('permission.guard'))->user()->id
 				]);
 	}
 
@@ -45,7 +45,7 @@ class PermissionRepository{
 
 
 	public function updatePermission(array $data,int $id){
-		$user =  \Auth::guard('admin')->user();
+		$user =  \Auth::guard(config('permission.guard'))->user();
 		\Cache::forget('user-permissions'.$user->id);
 		return $this
 				->query
@@ -54,7 +54,7 @@ class PermissionRepository{
 					[
 						'name' => $data['name'],
 					    'access_uri' => $data['access_uri'],
-						'updated_by' =>  \Auth::guard('admin')->user()->id
+						'updated_by' =>  \Auth::guard(config('permission.guard'))->user()->id
 					]
 				);
 	}

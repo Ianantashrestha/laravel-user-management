@@ -16,7 +16,7 @@ class CheckAuthentication
      */
     public function handle(Request $request, Closure $next)
     {
-        $guard = \Auth::guard('admin');
+        $guard = \Auth::guard(config('permission.guard'));
         $user= $guard->user();
         if ($guard->guest() && !$this->shouldPassThrough($request)) {
             return redirect()->guest(route(config('permission.guest_redirect')));

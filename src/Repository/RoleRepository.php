@@ -31,7 +31,7 @@ class RoleRepository{
 					->query
 					->create([
 						'name' => $data['name'],
-						'created_by' => \Auth::guard('admin')->user()->id
+						'created_by' => \Auth::guard(config('permission.guard'))->user()->id
 					]);
 	}
 
@@ -43,7 +43,7 @@ class RoleRepository{
 
 
 	public function updateRole(array $data,int $id){
-		$user =  \Auth::guard('admin')->user();
+		$user =  \Auth::guard(config('permission.guard'))->user();
 		$roleData = [
 			'name' => $data['name'],
 			'updated_by' =>$user->id

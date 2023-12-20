@@ -47,7 +47,7 @@ class AdminRepository{
 			'username'=>$data['username'],
 			'email'=>$data['email'],
 			'password'=>$data['password'],
-			'created_by' => \Auth::guard('admin')->user()->id
+			'created_by' => \Auth::guard(config('permission.guard'))->user()->id
 		];
 		$admin = $this
 					->query
@@ -71,7 +71,7 @@ class AdminRepository{
 			'name'=>$data['name'],
 			'username'=>$data['username'],
 			'email'=>$data['email'],
-			'updated_by' => \Auth::guard('admin')->user()->id,
+			'updated_by' => \Auth::guard(config('permission.guard'))->user()->id,
 		];
 		if($data->password){
 			$data['password']=$request->password;
@@ -91,7 +91,7 @@ class AdminRepository{
 	public function deleteAdmin(int $id){
 		$admin = $this->findAdmin($id);
 		$admin->update([
-			'deleted_by' =>  \Auth::guard('admin')->user()->id
+			'deleted_by' =>  \Auth::guard(config('permission.guard'))->user()->id
 		]);
 		return $admin->delete();
 	}

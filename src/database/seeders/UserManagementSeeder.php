@@ -16,7 +16,6 @@ class UserManagementDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
         \DB::connection('mysql')->table('admins')->insert(
             [
                 ['id' => '1', 'username' =>'superadmin','phone_number'=>'123456789','password' => $this->adminPassword, 'email' => 'superadmin@gmail.com', 'name' => 'Super Admin', 'created_at' => date('Y-m-d H:i:s')],

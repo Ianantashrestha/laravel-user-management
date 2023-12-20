@@ -17,7 +17,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "iananta/user-management": "main" 
+    
     },
     "autoload" :{
         "psr-4":{

@@ -15,9 +15,9 @@
             "url": "https://github.com/Ianantashrestha/laravel-user-management"
         }
     ],
-    "minimum-stability": "main",
+    "minimum-stability": "dev",
     "require": {
-        "iananta/user-management": "1.0.0"
+        "iananta/user-management": "main" 
     },
     "autoload" :{
         "psr-4":{

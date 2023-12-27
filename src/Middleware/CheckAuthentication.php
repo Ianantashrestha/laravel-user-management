@@ -19,15 +19,25 @@ class CheckAuthentication
         $guard = \Auth::guard(config('permission.guard'));
         $user= $guard->user();
         if ($guard->guest() && !$this->shouldPassThrough($request)) {
-            return redirect()->guest(route(config('permission.guest_redirect')));
+              if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json(['message' => 'Unauthorized'],500);
+              }else{
+                return redirect()->guest(route(config('permission.guest_redirect')));
+
+              }
         }
 
         if($user && $user->status === 0){ 
             $guard->logout();
-            return redirect()->guest(route(config('permission.guest_redirect')))
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return response()->json(['message' => 'Your account is inactive'],500);
+            }else{
+                return redirect()->guest(route(config('permission.guest_redirect')))
                 ->with([
                     'inactive' => 'Your account is inactive'
                 ]);
+            }
+         
         }
 
         if($guard->guest() && $this->shouldPassThrough($request)){

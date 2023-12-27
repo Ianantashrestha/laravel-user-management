@@ -12,7 +12,7 @@ trait UserPermissionTrait{
     public static function allPermissions()
     {
         if(self::$allPermissions == null){
-            $user =\Auth::guard('admin')->user();
+            $user =\Auth::guard(config('permission.guard'))->user();
             self::$allPermissions=\Cache::rememberForever('user-permissions'.$user->id,function() use ($user) {  
                 $roles=$user->roles()->get();
                 $rolesId=[];

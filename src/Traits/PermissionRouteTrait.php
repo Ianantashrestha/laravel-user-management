@@ -15,18 +15,19 @@ trait PermissionRouteTrait{
 	 * @return make a route list 
 	 */
 	public function routePermissionList(){
+		$basePrefix = config('permission.basePrefix');
 		$routesCollection=$this->routeCollection();
-		$filterRoutes=$this->filterRoutes($routesCollection,'dashboard');
+		$filterRoutes=$this->filterRoutes($routesCollection,$basePrefix);
 		$permissionRouteList = [];
 		$permissionActionRoute = [];
-		$permissionRouteList['dashboard'] =[
+		$permissionRouteList[$basePrefix] =[
 			'full-control' =>'/*'
 		];
 		foreach($filterRoutes as $key => $route){
 			$routePrefix=$route->getPrefix();
 			$prefixArr=explode('/',$routePrefix);
 			$module =end($prefixArr);
-			if($module !='dashboard')
+			if($module !=$basePrefix)
 				$permissionRouteList[$module]=[
 					'view'=>$routePrefix,
 				];

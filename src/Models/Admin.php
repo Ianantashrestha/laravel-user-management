@@ -5,7 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use IAnanta\UserManagement\Traits\UserPermissionTrait;
-class Admin extends Model implements AuthenticatableContract
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class Admin extends Model implements AuthenticatableContract,JWTSubject
 {
 	use Authenticatable,UserPermissionTrait;
     protected $table = 'admins';
@@ -13,7 +14,6 @@ class Admin extends Model implements AuthenticatableContract
         'name',
         'username',
         'email',
-        'phone_number',
         'password',
         'status',
         'created_by',
@@ -42,5 +42,12 @@ class Admin extends Model implements AuthenticatableContract
         return $this->belongsToMany(Role::class,'admin_roles', 'admin_id', 'role_id');
     }
 
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims() {
+        return [];
+    }    
 
 }

@@ -20,7 +20,7 @@ class CheckAuthentication
         $user= $guard->user();
         if ($guard->guest() && !$this->shouldPassThrough($request)) {
               if ($request->is('api/*') || $request->expectsJson()) {
-                return response()->json(['message' => 'Unauthorized'],500);
+                return response()->json(['message' => 'Unauthorized'],401);
               }else{
                 return redirect()->guest(route(config('permission.guest_redirect')));
 

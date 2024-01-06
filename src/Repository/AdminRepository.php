@@ -52,8 +52,8 @@ class AdminRepository{
 		$admin = $this
 					->query
 					->create($data);
-		if(isset($data['role']) && !empty($data['role'])){
-			$admin->roles()->attach($role);
+		if(isset($data['roles']) && !empty($data['roles'])){
+			$admin->roles()->attach($data['roles']);
 		}
 
 		return $admin;
@@ -76,9 +76,9 @@ class AdminRepository{
 		];
 		$admin = $this->findAdmin($id);
 		$admin->update($userData);
-		if(isset($data['role']) && !empty($data['role'])){
+		if(isset($data['roles']) && !empty($data['roles'])){
 			$admin->roles()->detach();
-			$admin->roles()->attach($role);
+			$admin->roles()->attach($data['roles']);
 		}
 
 		\Cache::forget('user-permissions-'.$userId);

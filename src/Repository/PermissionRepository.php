@@ -53,7 +53,7 @@ class PermissionRepository{
 				->update(
 					[
 						'name' => $data['name'],
-					    'access_uri' => $data['access_uri'],
+					    'access_uri' => is_array($data['access_uri']) ? implode(',',$data['access_uri']) : $data['access_uri'],
 						'updated_by' =>  \Auth::guard(config('permission.guard'))->user()->id
 					]
 				);

@@ -17,9 +17,9 @@ class AdminRepository{
 			 			->orWhere('email','like', '%' . $params['search'] . '%');
 		}
 
-		$query = $query->orderBy('id','desc')
+		$query = $query->orderBy('id','desc');
 		if($params['paginate'] === true){
-			return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1)
+			return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1);
 		}else{
 			return $query
 					->get();
@@ -38,7 +38,7 @@ class AdminRepository{
 			 			->orWhere('email','like', '%' . $params['search'] . '%');
 		}
 
-		return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1)
+		return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1);
 	}
 
 	public function storeAdmin(array $data){

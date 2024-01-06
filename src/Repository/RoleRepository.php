@@ -16,7 +16,7 @@ class RoleRepository{
 			 $query = $query
 			 			->where('name', 'like', '%' . $params['search'] . '%');
 		}
-		$query = $query->orderBy('id','desc')
+		$query = $query->orderBy('id','desc');
 
 		if($params['paginate'] === true){
 			return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1);

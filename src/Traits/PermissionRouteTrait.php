@@ -7,8 +7,8 @@ trait PermissionRouteTrait{
 	 */
 	public function routeCollection(){
 		$routes=\Route::getRoutes()->getRoutesByMethod();
-		return array_merge($routes['GET'],$routes['POST'],$routes['DELETE'],$routes['PUT']);
-	}
+		return array_merge($routes['GET'] ?? [],$routes['POST'] ?? [],$routes['DELETE'] ?? [],$routes['PUT'] ?? [],$routes['PATCH'] ?? []);
+	} 
 
 
 	/**

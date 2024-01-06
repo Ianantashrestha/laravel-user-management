@@ -2,7 +2,7 @@
 namespace IAnanta\UserManagement\Repository;
 use IAnanta\UserManagement\Models\Admin;
 class AdminRepository{
-	private $query;
+	private $query,$user =\Auth::guard(config('permission.guard'))->user();
 
 	public function __construct(Admin $query){
 		$this->query = $query;
@@ -47,7 +47,7 @@ class AdminRepository{
 			'username'=>$data['username'],
 			'email'=>$data['email'],
 			'password'=>$data['password'],
-			'created_by' => \Auth::guard(config('permission.guard'))->user()->id
+			'created_by' => $this->user->id
 		];
 		$admin = $this
 					->query
@@ -71,7 +71,7 @@ class AdminRepository{
 			'name'=>$data['name'],
 			'username'=>$data['username'],
 			'email'=>$data['email'],
-			'updated_by' => \Auth::guard(config('permission.guard'))->user()->id,
+			'updated_by' => $this->user->id,
 		];
 		$admin = $this->findAdmin($id);
 		$admin->update($userData);
@@ -80,15 +80,16 @@ class AdminRepository{
 			$admin->roles()->attach($role);
 		}
 
-		\Cache::forget('user-permissions'.$user->id);
+		\Cache::forget('user-permissions'.$this->user->id);
 
 		return $admin;
 	}
 
 	public function deleteAdmin(int $id){
 		$admin = $this->findAdmin($id);
+		\Cache::forget('user-permissions'.$this->user->id);
 		$admin->update([
-			'deleted_by' =>  \Auth::guard(config('permission.guard'))->user()->id
+			'deleted_by' => $this->user->id
 		]);
 		return $admin->delete();
 	}
@@ -96,6 +97,7 @@ class AdminRepository{
 	public function deleteAdminForever(int $id){
 		$admin =$this->findAdmin($id);
 		$admin->roles()->detach();
+		\Cache::forget('user-permissions'.$this->user->id);
 		return $admin->forceDelete();
 	}
 
@@ -104,7 +106,6 @@ class AdminRepository{
 					->query
 					->withTrashed()
 					->findOrFail($id);
-
 		return $admin->restore();
 	}
 

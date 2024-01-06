@@ -98,6 +98,7 @@ class AdminRepository{
 
 	public function deleteAdminForever(int $id){
 		$admin =$this->findAdmin($id);
+		$admin->roles()->detach();
 		return $admin->forceDelete();
 	}
 

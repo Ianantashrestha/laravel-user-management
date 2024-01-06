@@ -8,7 +8,7 @@ class PermissionRepository{
 		$this->query = $query;
 	}
 
-	public function getPermissions($params){
+	public function getPermissions($params=[]){
 		$query = $this->query;
 		if(!empty($params['search'])){
 			 $query = $query
@@ -22,7 +22,6 @@ class PermissionRepository{
 			return $query
 					->get();
 		}
-
 		
 	}
 

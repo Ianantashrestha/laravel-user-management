@@ -33,7 +33,7 @@ class RoleRepository{
 						'name' => $data['name'],
 						'created_by' => \Auth::guard(config('permission.guard'))->user()->id
 					]);
-		if(isset($data['permissions']))
+		if(isset($data['permissions']) && !empty($data['permissions']))
 			$role->permissions()->attach($data['permissions']);
 
 		return $data;
@@ -55,7 +55,7 @@ class RoleRepository{
 		];
 		$role = $this->findRole($id);
 		$role->update($roleData);
-		if(isset($data['permissions'])){
+		if(isset($data['permissions']) && !empty($data['permissions'])){
 			$role->permissions()->detach();
 			$role->permissions()->attach($role);
 		}

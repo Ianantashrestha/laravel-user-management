@@ -52,7 +52,7 @@ class AdminRepository{
 		$admin = $this
 					->query
 					->create($data);
-		if(!empty($data->role)){
+		if(isset($data['role']) && !empty($data['role'])){
 			$admin->roles()->attach($role);
 		}
 
@@ -78,7 +78,7 @@ class AdminRepository{
 		}
 		$admin = $this->findAdmin($id);
 		$admin->update($userData);
-		if($data->role){
+		if(isset($data['role']) && !empty($data['role'])){
 			$admin->roles()->detach();
 			$admin->roles()->attach($role);
 		}

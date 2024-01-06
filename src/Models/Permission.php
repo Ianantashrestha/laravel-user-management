@@ -12,6 +12,6 @@ class Permission extends Model
 
     public function getNameAttribute($value)
     {
-        return explode(','$value);
+        return explode(',',$value);
     }
 }

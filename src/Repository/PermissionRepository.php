@@ -16,7 +16,7 @@ class PermissionRepository{
 		}
 		$query = $query->orderBy('id','desc');
 
-		if($params['paginate'] === true){
+		if(isset($params['paginate']) && $params['paginate'] === true){
 			return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1);
 		}else{
 			return $query

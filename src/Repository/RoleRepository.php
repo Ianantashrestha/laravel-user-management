@@ -10,7 +10,7 @@ class RoleRepository{
 		$this->query = $query;
 	}
 
-	public function getRoles($params){
+	public function getRoles($params = []){
 			$query = $this->query;
 		if(!empty($params['search'])){
 			 $query = $query
@@ -18,7 +18,7 @@ class RoleRepository{
 		}
 		$query = $query->orderBy('id','desc');
 
-		if($params['paginate'] === true){
+		if(isset($params['paginate']) && $params['paginate'] === true){
 			return $query->paginate($params['limit'] ?? 10, ['*'], 'page', $params['pageNumber'] ?? 1);
 		}else{
 			return $query
@@ -33,6 +33,11 @@ class RoleRepository{
 						'name' => $data['name'],
 						'created_by' => \Auth::guard(config('permission.guard'))->user()->id
 					]);
+		if(isset($data['permissions']))
+			$role->permissions()->attach($data['permissions']);
+
+		return $data;
+
 	}
 
 	public function findRole(int $id){
@@ -50,7 +55,7 @@ class RoleRepository{
 		];
 		$role = $this->findRole($id);
 		$role->update($roleData);
-		if($data->permissions){
+		if(isset($data['permissions'])){
 			$role->permissions()->detach();
 			$role->permissions()->attach($role);
 		}

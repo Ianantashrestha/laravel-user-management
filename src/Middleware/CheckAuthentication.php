@@ -52,7 +52,6 @@ class CheckAuthentication
         if($user->checkUrlAllowAccess($request->url())){
             return $next($request);
         }else{
-            return $next($request); //remove this for permission
             abort(401);
         }
         return $next($request);

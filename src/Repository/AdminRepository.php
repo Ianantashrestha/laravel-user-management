@@ -73,9 +73,6 @@ class AdminRepository{
 			'email'=>$data['email'],
 			'updated_by' => \Auth::guard(config('permission.guard'))->user()->id,
 		];
-		if($data->password){
-			$data['password']=$request->password;
-		}
 		$admin = $this->findAdmin($id);
 		$admin->update($userData);
 		if(isset($data['role']) && !empty($data['role'])){

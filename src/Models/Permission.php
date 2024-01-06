@@ -12,7 +12,7 @@ class Permission extends Model
    		  $this->attributes['access_uri'] = implode(',',$value);
    }
 
-    public function getNameAttribute($value)
+    public function getAccessUriAttribute($value)
     {
         return explode(',',$value);
     }

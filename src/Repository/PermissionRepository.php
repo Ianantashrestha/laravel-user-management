@@ -31,7 +31,7 @@ class PermissionRepository{
 				->query
 				->create([
 					'name' => $data['name'],
-					'access_uri' => $data['access_uri'],
+					'access_uri' => $data['access_uri'] ?? '',
 					'created_by' =>  \Auth::guard(config('permission.guard'))->user()->id
 				]);
 	}

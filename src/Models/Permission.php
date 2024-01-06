@@ -6,6 +6,7 @@ class Permission extends Model
 {
    use PermissionRouteTrait;
    protected $table = 'permissions';
+   protected $guarded = [];
 
    public function setAccessUriAttribute($value){
    		  $this->attributes['access_uri'] = implode(',',$value);

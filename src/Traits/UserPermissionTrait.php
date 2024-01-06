@@ -13,7 +13,7 @@ trait UserPermissionTrait{
     {
         if(self::$allPermissions == null){
             $user =\Auth::guard(config('permission.guard'))->user();
-            self::$allPermissions=\Cache::rememberForever('user-permissions'.$user->id,function() use ($user) {  
+            self::$allPermissions=\Cache::rememberForever('user-permissions-'.$user->id,function() use ($user) {  
                 $roles=$user->roles()->get();
                 $rolesId=[];
                 foreach($roles as $role){

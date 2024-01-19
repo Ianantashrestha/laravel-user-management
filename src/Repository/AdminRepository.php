@@ -55,7 +55,7 @@ class AdminRepository{
 		if(isset($data['roles']) && !empty($data['roles'])){
 			$admin->roles()->attach($data['roles']);
 		}
-
+		\Cache::forget('user-permissions-'.$admin->id);
 		return $admin;
 	}
 

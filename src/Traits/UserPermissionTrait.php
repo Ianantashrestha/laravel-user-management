@@ -57,8 +57,8 @@ trait UserPermissionTrait{
     public function checkUrlAllowAccess($url){
     	$listUrlAllowAccess = $this->allViewPermissions();
  		$arrScheme = ['https://', 'http://'];
-        $pathCheck = strtolower(str_replace($arrScheme, '', $url));
-        $adminUrl = strtolower(str_replace($arrScheme,'',url('/'))).'/*';
+        $pathCheck = str_replace($arrScheme, '', $url);
+        $adminUrl = str_replace($arrScheme,'',url('/')).'/*';
         if(in_array($adminUrl,$listUrlAllowAccess)){
         	return true;
         }

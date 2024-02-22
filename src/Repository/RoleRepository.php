@@ -27,6 +27,8 @@ class RoleRepository{
 	}
 
 	public function storeRole(array $data){
+		$user =  \Auth::guard(config('permission.guard'))->user();
+		\Cache::forget('user-permissions-'.$user->id);
 		$role = $this
 					->query
 					->create([
@@ -59,13 +61,15 @@ class RoleRepository{
 			$role->permissions()->detach();
 			$role->permissions()->attach($role);
 		}
-		\Cache::forget('user-permissions'.$user->id);
+		\Cache::forget('user-permissions-'.$user->id);
 
 		return $role;
 	}
 
 
 	public function deleteRole(int $id){
+		$user =  \Auth::guard(config('permission.guard'))->user();
+		\Cache::forget('user-permissions-'.$user->id);
 		$role = $this->findRole($id);
 		$role->permissions()->detach();
 		return $role->delete();

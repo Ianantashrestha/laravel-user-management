@@ -26,6 +26,8 @@ class PermissionRepository{
 	}
 
 	public function storePermission(array $data){
+		$user =  \Auth::guard(config('permission.guard'))->user();
+		\Cache::forget('user-permissions-'.$user->id);
 		return $this
 				->query
 				->create([
@@ -45,7 +47,7 @@ class PermissionRepository{
 
 	public function updatePermission(array $data,int $id){
 		$user =  \Auth::guard(config('permission.guard'))->user();
-		\Cache::forget('user-permissions'.$user->id);
+		\Cache::forget('user-permissions-'.$user->id);
 		return $this
 				->query
 				->where('id',$id)
@@ -60,6 +62,8 @@ class PermissionRepository{
 
 
 	public function deletePermission(int $id){
+		$user =  \Auth::guard(config('permission.guard'))->user();
+		\Cache::forget('user-permissions-'.$user->id);
 		return $this
 				->query
 				->where('id',$id)

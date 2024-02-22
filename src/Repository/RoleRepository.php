@@ -11,7 +11,7 @@ class RoleRepository{
 	}
 
 	public function getRoles($params = []){
-			$query = $this->query;
+		$query = $this->query;
 		if(!empty($params['search'])){
 			 $query = $query
 			 			->where('name', 'like', '%' . $params['search'] . '%');
@@ -27,8 +27,6 @@ class RoleRepository{
 	}
 
 	public function storeRole(array $data){
-		$user =  \Auth::guard(config('permission.guard'))->user();
-		\Cache::forget('user-permissions-'.$user->id);
 		$role = $this
 					->query
 					->create([
@@ -50,7 +48,6 @@ class RoleRepository{
 
 
 	public function updateRole(array $data,int $id){
-		$user =  \Auth::guard(config('permission.guard'))->user();
 		$roleData = [
 			'name' => $data['name'],
 			'updated_by' =>$user->id
@@ -61,15 +58,11 @@ class RoleRepository{
 			$role->permissions()->detach();
 			$role->permissions()->attach($role);
 		}
-		\Cache::forget('user-permissions-'.$user->id);
-
 		return $role;
 	}
 
 
 	public function deleteRole(int $id){
-		$user =  \Auth::guard(config('permission.guard'))->user();
-		\Cache::forget('user-permissions-'.$user->id);
 		$role = $this->findRole($id);
 		$role->permissions()->detach();
 		return $role->delete();

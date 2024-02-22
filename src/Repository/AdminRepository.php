@@ -55,7 +55,6 @@ class AdminRepository{
 		if(isset($data['roles']) && !empty($data['roles'])){
 			$admin->roles()->attach($data['roles']);
 		}
-		\Cache::forget('user-permissions-'.$admin->id);
 		return $admin;
 	}
 
@@ -67,7 +66,6 @@ class AdminRepository{
 	}
 
 	public function updateAdmin(array $data,int $id){
-		$userId =  \Auth::guard(config('permission.guard'))->user()->id;
 		$userData=[
 			'name'=>$data['name'],
 			'username'=>$data['username'],
@@ -79,10 +77,7 @@ class AdminRepository{
 		if(isset($data['roles']) && !empty($data['roles'])){
 			$admin->roles()->detach();
 			$admin->roles()->attach($data['roles']);
-		}
-
-		\Cache::forget('user-permissions-'.$userId);
-		
+		}		
 
 		return $admin;
 	}
@@ -98,7 +93,6 @@ class AdminRepository{
 	public function deleteAdminForever(int $id){
 		$admin =$this->findAdmin($id);
 		$admin->roles()->detach();
-		\Cache::forget('user-permissions-'.\Auth::guard(config('permission.guard'))->user()->id);
 		return $admin->forceDelete();
 	}
 

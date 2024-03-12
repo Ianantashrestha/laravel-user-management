@@ -23,6 +23,7 @@ trait PermissionRouteTrait{
 		$permissionRouteList[$basePrefix] =[
 			'full-control' =>'/*'
 		];
+		
 		foreach($filterRoutes as $key => $route){
 			$routePrefix=$route->getPrefix();
 			$prefixArr=explode('/',$routePrefix);
@@ -33,7 +34,15 @@ trait PermissionRouteTrait{
 				];
 			if(strpos($key,'create') !== false) $permissionActionRoute[$module]['create'] =$route->uri;
 			if(strpos($key,'edit') !== false) $permissionActionRoute[$module]['edit'] =$route->uri;
-			if(strpos($key,'delete') !== false) $permissionActionRoute[$module]['delete'] =$route->uri;
+			if(strpos($key,'delete') !== false){ $permissionActionRoute[$module]['delete'] =$route->uri;}
+			if(strpos($key,'create') == false && strpos($key,'edit') == false && strpos($key,'delete') == false && $routePrefix !=$route->uri) {
+		        if (!isset($permissionActionRoute[$module]['others'])) {
+		            $permissionActionRoute[$module]['others'] = [];
+		           
+		        }  	
+		       	$permissionActionRoute[$module]['others'][] = $route->uri;
+
+		    }
 		}
 		return array_merge_recursive($permissionRouteList,$permissionActionRoute);
 	}

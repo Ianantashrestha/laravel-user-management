@@ -56,7 +56,7 @@ class RoleRepository{
 		$role->update($roleData);
 		if(isset($data['permissions']) && !empty($data['permissions'])){
 			$role->permissions()->detach();
-			$role->permissions()->attach($role);
+			$role->permissions()->attach($data['permissions']);
 		}
 		return $role;
 	}

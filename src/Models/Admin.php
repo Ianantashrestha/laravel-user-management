@@ -10,17 +10,7 @@ class Admin extends Model implements AuthenticatableContract,JWTSubject
 {
 	use Authenticatable,UserPermissionTrait;
     protected $table = 'admins';
-    protected $fillable = [
-        'name',
-        'username',
-        'email',
-        'password',
-        'status',
-        'created_by',
-        'updated_by',
-        'deleted_by'
-    ];
-
+    protected $guarded = [];
     protected $hidden = [
         'password',
         'remember_token',

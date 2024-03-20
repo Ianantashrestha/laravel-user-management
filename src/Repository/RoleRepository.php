@@ -50,7 +50,7 @@ class RoleRepository{
 	public function updateRole(array $data,int $id){
 		$roleData = [
 			'name' => $data['name'],
-			'updated_by' =>$user->id
+			'updated_by' => \Auth::guard(config('permission.guard'))->user()->id
 		];
 		$role = $this->findRole($id);
 		$role->update($roleData);

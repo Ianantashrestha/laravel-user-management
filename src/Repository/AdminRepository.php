@@ -70,7 +70,7 @@ class AdminRepository{
 			'name'=>$data['name'],
 			'username'=>$data['username'],
 			'email'=>$data['email'],
-			'updated_by' => $userId,
+			'updated_by' =>  \Auth::guard(config('permission.guard'))->user()->id,
 		];
 		$admin = $this->findAdmin($id);
 		$admin->update($userData);

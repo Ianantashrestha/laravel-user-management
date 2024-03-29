@@ -18,6 +18,11 @@ class CheckAuthentication
     {
         $guard = \Auth::guard(config('permission.guard'));
         $user= $guard->user();
+        
+        if($this->without($request)){
+            return $next($request);
+        }
+
         if ($guard->guest() && !$this->shouldPassThrough($request)) {
               if ($request->is('api/*') || $request->expectsJson()) {
                 return response()->json(['message' => 'Unauthorized'],401);
@@ -71,6 +76,13 @@ class CheckAuthentication
         $exceptsPath = config('permission.without');
         return in_array($routePath, $exceptsPath);
     }
+
+    public function without($request){
+        $routeName = $request->route()->getName();
+        $allowRoute =config('permission.without');
+        return in_array($routeName, $allowRoute);
+    }
+
 
 
       /*

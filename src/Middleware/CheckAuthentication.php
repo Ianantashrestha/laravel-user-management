@@ -78,7 +78,8 @@ class CheckAuthentication
     }
 
     public function without($request){
-        $routeName = $request->route()->getName();
+        $route = \Route::getRoutes()->match($request);
+        $routeName =  $route->getName();
         $allowRoute =config('permission.without');
         return in_array($routeName, $allowRoute);
     }
@@ -90,7 +91,8 @@ class CheckAuthentication
     */
     public function routeDefaultPass($request)
     {
-        $routeName = $request->route()->getName();
+        $route = \Route::getRoutes()->match($request);
+        $routeName =  $route->getName();
         $allowRoute =config('permission.allow');
         return in_array($routeName, $allowRoute);
     }

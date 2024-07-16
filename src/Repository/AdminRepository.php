@@ -51,7 +51,7 @@ class AdminRepository{
 		];
 		$admin = $this
 					->query
-					->create($data);
+					->create($userData);
 		if(isset($data['roles']) && !empty($data['roles'])){
 			$admin->roles()->attach($data['roles']);
 		}
